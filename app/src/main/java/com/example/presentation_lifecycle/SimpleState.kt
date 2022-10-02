@@ -3,10 +3,13 @@ package com.example.presentation_lifecycle
 import androidx.compose.ui.graphics.Color
 
 sealed class SimpleState(
-    val text: String,
-    val textColor: Color,
-    val backgroundColor: Color
+    val text: String = "",
+    val textColor: Color = Color.White,
+    val backgroundColor: Color = Color.White
 ) {
+
+    object EMPTY: SimpleState()
+
     object State1 : SimpleState(
         "Oh Yeah!",
         textColor = Color.DarkGray,

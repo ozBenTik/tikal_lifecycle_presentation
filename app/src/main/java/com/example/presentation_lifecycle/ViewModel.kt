@@ -5,11 +5,18 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
 class PresentationViewModel : ViewModel() {
-    private val _state = MutableStateFlow<SimpleState>(SimpleState.State1)
+    private val _simpleState = MutableStateFlow<SimpleState>(SimpleState.State1)
+    private val _extendedState = MutableStateFlow<ExtendedState>(ExtendedState.EMPTY)
 
-    val observeState = _state.asStateFlow()
+    val observeSimpleState = _simpleState.asStateFlow()
 
-    fun updateState(newState: SimpleState) {
-        _state.tryEmit(newState)
+    fun updateSimpleState(newSimpleState: SimpleState) {
+        _simpleState.tryEmit(newSimpleState)
+    }
+
+    val observeExtendedState = _extendedState.asStateFlow()
+
+    fun updateExtendedState(newExtendedState: ExtendedState) {
+        _extendedState.tryEmit(newExtendedState)
     }
 }
