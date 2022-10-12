@@ -6,13 +6,12 @@ import com.example.presentation_lifecycle.domain.SomeObserveIteractor
 import com.example.presentation_lifecycle.domain.SomeUpdateIteractor
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class PresentationViewModel @Inject constructor(
+class SomeViewModel @Inject constructor(
     val updateIteractor: SomeUpdateIteractor,
     observeIteractor: SomeObserveIteractor
 ) : ViewModel() {
@@ -41,10 +40,10 @@ class PresentationViewModel @Inject constructor(
     )
 
     init {
-        fetchData()
+        fetchSomeData()
     }
 
-    fun fetchData() {
+    fun fetchSomeData() {
         viewModelScope.launch(Dispatchers.IO) {
             loadingFlow.emit(true)
             updateIteractor.fetch().collect()

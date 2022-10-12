@@ -4,15 +4,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.lifecycle.LifecycleOwner
-import com.example.presentation_lifecycle.ui.ui_some.PresentationViewModel
+import com.example.presentation_lifecycle.ui.ui_some.SomeViewModel
 
 @Composable
 fun SomeScreen(
-    viewModel: PresentationViewModel,
+    viewModel: SomeViewModel,
     lifecycleOwner: LifecycleOwner = LocalLifecycleOwner.current,
 ) {
     SomeLifecycleObserver(lifecycleOwner.lifecycle){
-        viewModel.fetchData()
+        viewModel.fetchSomeData()
     }
 
     val state = viewModel.uiState.collectAsState()
