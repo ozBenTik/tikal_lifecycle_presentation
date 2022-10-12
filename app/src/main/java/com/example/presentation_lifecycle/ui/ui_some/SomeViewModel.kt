@@ -12,15 +12,15 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SomeViewModel @Inject constructor(
-    val updateIteractor: SomeUpdateIteractor,
+    private val updateIteractor: SomeUpdateIteractor,
     observeIteractor: SomeObserveIteractor
 ) : ViewModel() {
 
-    private val loadingFlow = MutableStateFlow(true)
+    private val _loadingFlow = MutableStateFlow(true)
 
     var uiState: StateFlow<SomeUIState> = combine(
         observeIteractor.observe(),
-        loadingFlow
+        _loadingFlow
     ) { data, loading ->
         SomeUIState(
             users = data,
@@ -31,7 +31,7 @@ class SomeViewModel @Inject constructor(
                     }
                 }
             }.toList(),
-            loading = loadingFlow.value
+            loading = loading
         )
     }.stateIn(
         viewModelScope,
@@ -45,9 +45,9 @@ class SomeViewModel @Inject constructor(
 
     fun fetchSomeData() {
         viewModelScope.launch(Dispatchers.IO) {
-            loadingFlow.emit(true)
+            _loadingFlow.emit(true)
             updateIteractor.fetch().collect()
-            loadingFlow.emit(false)
+            _loadingFlow.emit(false)
         }
     }
 }
