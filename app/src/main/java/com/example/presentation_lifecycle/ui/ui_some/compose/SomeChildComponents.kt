@@ -74,15 +74,22 @@ fun OldUsersMessages(data: SomeUIState, modifier: Modifier = Modifier) {
         ) {
             Row(
                 modifier = Modifier
-                    .background(Color.LightGray)
+                    .background( if (data.relevantUsers.isNotEmpty()) Color.LightGray else Color.Red)
                     .fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceAround
             ) {
+                val hasUsers = data.relevantUsers.isNotEmpty()
+
                 Text(
-                    text = if (data.relevantUsers.isNotEmpty()) {
+                    text = if (hasUsers) {
                         "25+ Users Fav Sports"
                     } else {
                         "All Users are under 25"
+                    },
+                    color = if (hasUsers) {
+                        MaterialTheme.colors.onBackground
+                    } else {
+                        MaterialTheme.colors.background
                     },
                     style = MaterialTheme.typography.h6,
                     modifier = Modifier.padding(6.dp)
@@ -123,6 +130,7 @@ fun AllUsers(data: SomeUIState, modifier: Modifier = Modifier) {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
         ) {
+            val hasUsers = data.users.isNotEmpty()
             Row(
                 modifier = Modifier
                     .background(Color.LightGray)
@@ -130,7 +138,7 @@ fun AllUsers(data: SomeUIState, modifier: Modifier = Modifier) {
                 horizontalArrangement = Arrangement.SpaceAround
             ) {
                 Text(
-                    text = "All Users",
+                    text = if (hasUsers) "All Users" else "No Users",
                     style = MaterialTheme.typography.h6,
                     modifier = Modifier.padding(6.dp)
                 )
