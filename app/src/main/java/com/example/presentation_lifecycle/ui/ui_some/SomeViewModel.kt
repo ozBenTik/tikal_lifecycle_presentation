@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.presentation_lifecycle.domain.SomeObserveIteractor
 import com.example.presentation_lifecycle.domain.SomeUpdateIteractor
+import com.example.presentation_lifecycle.model.SomeData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
@@ -24,10 +25,10 @@ class SomeViewModel @Inject constructor(
     ) { data, loading ->
         SomeUIState(
             users = data,
-            userMessages = mutableListOf<String>().apply {
+            relevantUsers = mutableListOf<SomeData>().apply {
                 data.forEach {
                     if (it.age > 25) {
-                        add(it.message)
+                        add(it)
                     }
                 }
             }.toList(),

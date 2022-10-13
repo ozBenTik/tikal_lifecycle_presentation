@@ -6,5 +6,6 @@ data class SomeData(
     val name: String = "",
     val message: String = "",
     val age: Int = 0,
-    val color: Color = Color.White
+    val color: Color = Color.White,
+    val favSportIconRes: Int = -1
 )

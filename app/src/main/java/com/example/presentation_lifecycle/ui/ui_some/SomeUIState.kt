@@ -4,6 +4,6 @@ import com.example.presentation_lifecycle.model.SomeData
 
 data class SomeUIState(
     val users: List<SomeData> = emptyList(),
-    val userMessages: List<String> = emptyList(),
+    val relevantUsers: List<SomeData> = emptyList(),
     val loading: Boolean = true
 )
