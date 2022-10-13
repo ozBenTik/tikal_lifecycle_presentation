@@ -9,7 +9,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
 
-// A side-effect is a change to the state of the app that happens outside the scope of a composable function.
+// A Remainder - A side-effect is a change to the state of the app that happens outside the scope of a composable function.
 
 /**
  * A Composable that observes the lifecycle of the lifecycleOwner and able to trigger callbacks of it.
