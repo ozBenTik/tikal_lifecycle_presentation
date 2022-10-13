@@ -11,7 +11,7 @@ fun SomeScreen(
     viewModel: SomeViewModel,
     lifecycleOwner: LifecycleOwner = LocalLifecycleOwner.current,
 ) {
-    SomeLifecycleObserver(lifecycleOwner.lifecycle){
+    LifecycleAwareComposable(lifecycleOwner){
         viewModel.fetchSomeData()
     }
 
